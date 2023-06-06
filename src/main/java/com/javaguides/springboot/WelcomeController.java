@@ -17,19 +17,25 @@ public class WelcomeController {
 //    public WelcomeController() throws SQLException {
 //        connection = connectToDatabase.getConnection();
 //    }
+
     @GetMapping("/getAllProperty")
     public String welcome() {
 
         String query = "SELECT * FROM propertyList";
         try  {
-            Class.forName("com.mysql.jdbc.Driver").newInstance();
-            connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/propertyListing?useSSL=false","root","12345678");
+            Class.forName("com.mysql.cj.jdbc.Driver").newInstance();
+            connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/addProperties","root","12345678");
             PreparedStatement statement = connection.prepareStatement(query);
 //            statement.setInt(1, userId);
             ResultSet resultSet = statement.executeQuery();
             // Process the result set and create a User object
             // Return the User object
-            System.out.println(resultSet);
+            System.out.println("jjjjjjjjjjjj"+resultSet);
+            while(resultSet.next()){
+                String value = resultSet.getString(1);
+
+                System.out.println("value='"+value+"'");
+            }
         } catch (Exception e){
 
             e.printStackTrace();
