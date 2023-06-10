@@ -1,15 +1,26 @@
 package com.javaguides.springboot;
 
 public class model {
+    public int listingNumber;
 
-    private int listingNumber;
+    public int getListingNumber() {
+        return listingNumber;
+    }
 
-    (name = "street_address", nullable = false)
-    private int street_address;
+    public void setListingNumber(int listingNumber) {
+        this.listingNumber = listingNumber;
+    }
 
-    (name = "street_name", nullable = false)
+    public String street_address;
+    public String street_name;
 
-    private String street_name;
+    public String city;
 
-    (name = "")
+    public String state;
+
+    public int zip;
+
+    public boolean active_status;
+
+    public int cost;
 }
