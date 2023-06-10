@@ -42,23 +42,9 @@ public class WelcomeController {
                 obj.active_status  = resultSet.getBoolean(7);
                 obj.cost           = resultSet.getInt(8);
 
-                //System.out.println("listingNumber");
+
                 System.out.println(obj.listingNumber+" " + obj.street_address + " " + obj.street_name + " " + obj.city + " " + obj.state + " " + obj.zip + " " + obj.active_status + " " + obj.cost);
-                /*System.out.println("street_address");
-                //System.out.println(value2);
-                System.out.println("street_name");
-                //System.out.println(value3);
-                System.out.println("city");
-                //System.out.println(value4);
-                System.out.println("state");
-                //System.out.println(value5);
-                System.out.println("zip");
-                //System.out.println(value6);
-                System.out.println("active_status");
-                //System.out.println(value7);
-                System.out.println("cost");
-                //System.out.println(value8);
-                */
+
             }
         } catch (Exception e){
 
