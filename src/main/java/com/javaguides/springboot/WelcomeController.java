@@ -55,9 +55,30 @@ public class WelcomeController {
     }
 
     @PostMapping("/createProperty")
-    public String insertProperty(int listingNumber, int street_number, String streetName, String city, String state, int zip, boolean activeStatus, int cost){
+    public String insertProperty(int streetNumber,String streetName){
 
-        return "Post/Insert is successful"+ ResulSet;
+        String city = "WalnutCReek", state="CA";
+         int zip= 23445;
+         boolean activeStatus=true;
+         int cost = 1232322;
+        String query = "INSERT INTO propertyListing ( street_address, street_name, city, state, zip, active_status, cost) VALUES ("+ "\""+ streetNumber +"\""+ "," + streetName + "," +"\""+ city +"\""+ "," +"\""+ state +"\""+ "," + zip + "," + activeStatus + "," + cost +")";
+        System.out.println("hiiiiiiii"+query);
+        try  {
+            Class.forName("com.mysql.cj.jdbc.Driver").newInstance();
+            connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/propertyListing","root","12345678");
+            PreparedStatement statement = connection.prepareStatement(query);
+//            statement.setInt(1, userId);
+            int resultSet = statement.executeUpdate();
+            // Process the result set and create a User object
+            // Return the User object
+            return "Post/Insert is successful"+ resultSet;
+        } catch (Exception e){
+
+            e.printStackTrace();
+        } finally{
+            return "finalllyyy";
+        }
+
     }
 
 //    @PutMapping("/updateProperty")
