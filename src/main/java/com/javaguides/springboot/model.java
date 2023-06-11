@@ -20,7 +20,5 @@ public class model {
 
     public int zip;
 
-    public boolean active_status;
-
     public int cost;
 }

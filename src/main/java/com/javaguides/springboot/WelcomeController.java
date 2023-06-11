@@ -30,7 +30,7 @@ public class WelcomeController {
             ResultSet resultSet = statement.executeQuery();
             // Process the result set and create a User object
             // Return the User object
-            System.out.println("jjjjjjjjjjjj"+resultSet);
+            System.out.println(resultSet);
             model obj = new model(); //create an object for the model class
             while(resultSet.next()){
                 obj.listingNumber  = resultSet.getInt(1);
@@ -39,11 +39,10 @@ public class WelcomeController {
                 obj.city           = resultSet.getString(4);
                 obj.state          = resultSet.getString(5);
                 obj.zip            = resultSet.getInt(6);
-                obj.active_status  = resultSet.getBoolean(7);
                 obj.cost           = resultSet.getInt(8);
 
 
-                System.out.println(obj.listingNumber+" " + obj.street_address + " " + obj.street_name + " " + obj.city + " " + obj.state + " " + obj.zip + " " + obj.active_status + " " + obj.cost);
+                System.out.println(obj.listingNumber+" " + obj.street_address + " " + obj.street_name + " " + obj.city + " " + obj.state + " " + obj.zip + " " + " " + obj.cost);
 
             }
         } catch (Exception e){
@@ -55,14 +54,9 @@ public class WelcomeController {
     }
 
     @PostMapping("/createProperty")
-    public String insertProperty(int streetNumber,String streetName){
-
-        String city = "WalnutCReek", state="CA";
-         int zip= 23445;
-         boolean activeStatus=true;
-         int cost = 1232322;
-        String query = "INSERT INTO propertyListing ( street_address, street_name, city, state, zip, active_status, cost) VALUES ("+ "\""+ streetNumber +"\""+ "," + streetName + "," +"\""+ city +"\""+ "," +"\""+ state +"\""+ "," + zip + "," + activeStatus + "," + cost +")";
-        System.out.println("hiiiiiiii"+query);
+    public String insertProperty(int streetNumber,String streetName, String city, String state, int zip, int cost){
+        String query = "INSERT INTO propertyListing ( street_address, street_name, city, state, zip, cost) VALUES ("+ streetNumber + "," + streetName + "," + city + "," + state + "," + zip + "," + cost +")";
+        System.out.println(query);
         try  {
             Class.forName("com.mysql.cj.jdbc.Driver").newInstance();
             connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/propertyListing","root","12345678");
@@ -76,7 +70,7 @@ public class WelcomeController {
 
             e.printStackTrace();
         } finally{
-            return "finalllyyy";
+            return "Completed query";
         }
 
     }
