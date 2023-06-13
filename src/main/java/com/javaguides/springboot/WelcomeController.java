@@ -84,21 +84,61 @@ public class WelcomeController {
         }
 
     }
-//      @PatchMapping("/partialUpdateProperty")
-//      {
-//
-//      }
-//          return "Patch successful";
-//      }
-//    @PutMapping("/updateProperty")
-//    {
-//
-//        return "Creation successful";
-//    }
-//    @DeleteMapping("/deleteProperty"){
-//
-//        return "Deletion successful";
-//    }
+
+
+
+      @PutMapping ("/updatePropertyCost")
+      public String updateProperty(
+              @RequestParam(value = "slNo") int listingNumber,
+              @RequestParam(value = "cs") int cost){
+          String query = "UPDATE propertyListing SET cost="+cost+" where listingNumber="+listingNumber;
+
+          System.out.println(query);
+          try  {
+              Class.forName("com.mysql.cj.jdbc.Driver").newInstance();
+              connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/propertyListing","root","12345678");
+              PreparedStatement statement = connection.prepareStatement(query);
+//            statement.setInt(1, userId);
+              int resultSet = statement.executeUpdate();
+              // Process the result set and create a User object
+              // Return the User object
+              return "Post/Insert is successful"+ resultSet;
+          } catch (Exception e){
+
+              e.printStackTrace();
+          } finally{
+              return "Cost is successfully updated";
+          }
+
+      }
+
+
+
+    @DeleteMapping("/deleteProperty/{id}")
+    public String deleteProperty(
+            @RequestParam(value = "slNo") int listingNumber){
+        String query = "DELETE FROM propertyListing where listingNumber="+listingNumber;
+
+        System.out.println(query);
+        try  {
+            Class.forName("com.mysql.cj.jdbc.Driver").newInstance();
+            connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/propertyListing","root","12345678");
+            PreparedStatement statement = connection.prepareStatement(query);
+//            statement.setInt(1, userId);
+            int resultSet = statement.executeUpdate();
+            // Process the result set and create a User object
+            // Return the User object
+            return "Post/Insert is successful"+ resultSet;
+        } catch (Exception e){
+
+            e.printStackTrace();
+        } finally{
+            return "Cost is successfully updated";
+        }
+
+    }
+
+
 
 }
 
